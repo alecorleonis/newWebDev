@@ -33,8 +33,7 @@ module.exports.postResource = function(req,res){
                         res.json({status: 500})
                     } else{
                         console.log("save successful");
-
-                        res.json({status: 200})
+                        res.json({path:savePath, name:file.name})
                     }
                 })
             })

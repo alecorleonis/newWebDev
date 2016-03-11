@@ -11,23 +11,18 @@
               $rootScope.loggedIn = true;
             }
  
-            $scope.$watch(function(){
-               return $scope.file
-              }, function(){
-                  $scope.upload($scope.file);
-              });
-  
-              $scope.upload = function(file){
+              $scope.upload = function(file, errfiles){
+                $scope.f = file;
                   if(file){
                       Upload.upload({
                           url: 'api/resource/post',
                           method:'POST',
-                          data: {userId: $scope.user._id},
-                          file: file
+                          data: {userId: $scope.user._id, file:file}
                       }).progress(function(evt){
                           console.log("firing");
                       }).success(function(data){
-  
+                          $scope.file = data;
+                          console.log('Guardado');
                       }).error(function(error){
                           console.log(error);
                       })

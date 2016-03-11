@@ -1,4 +1,4 @@
-<div class="col-sn-18 col-sm-offset-1" ng-controller="NavigationController">    
+<div class="col-sn-18 col-sm-offset-1">    
    <p class="panel"> 
    <div ng-show="loggedIn">
         <div class="row" ng-controller="MainController">
@@ -10,13 +10,25 @@
         </div>
         
         <div class="row">
-            <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'video/*'" accept="'video/*'">
+            <button class="button" ngf-select="upload($file,$invalidFiles)" ng-model="file" name="file" ngf-pattern=".jpg" nfg-accept=".jpg">
+                Subir una imagen
+            </button>
+        </div>        
+        <div class="row">
+            <button class="button" ngf-select="upload($file,$invalidFiles)" ng-model="file" name="file" ngf-pattern=".mp4" accept=".mp4">
                 Subir un video
-            </div>
+            </button>
+        </div>        
+        <div class="row">
+            <button class="button" ngf-select="upload($file,$invalidFiles)" ng-model="file" name="file" ngf-pattern=".pdf" accept=".pdf">
+                Subir un pdf
+            </button>
         </div>
     </p>
     </div>
-    
+    <div class="row">
+        <a href="{{file.path}}" target="_blank">{{ file.name }} Open</a>
+    </div>
     <div class="row" ng-controller="MainController" >
         <table class="waste-section">
             <tr> <a ng-if="incomingWastes.length > 0" ng-click="setNewWastes()">Hay {{difference}} nuevas publicaciones</a></tr>
